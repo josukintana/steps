@@ -1,3 +1,5 @@
+
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -40,5 +42,10 @@ module Steps
     config.filter_parameters += [:password]
     
     config.assets.enabled = true
+    
+    config.to_prepare do
+      Devise::SessionsController.layout "sign"
+      Devise::RegistrationsController.layout "sign"
+    end
   end
 end
