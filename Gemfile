@@ -8,6 +8,8 @@ gem 'mysql2'
 gem 'haml'
 gem 'devise'
 gem 'kaminari'
+gem 'cancan'
+gem 'inherited_resources'
  
 group :development, :test do
   gem 'capybara'
