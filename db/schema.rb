@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224195833) do
+ActiveRecord::Schema.define(:version => 20111226015141) do
+
+  create_table "steplists", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "steplists", ["user_id"], :name => "index_steplists_on_user_id"
+
+  create_table "steps", :force => true do |t|
+    t.integer  "index"
+    t.text     "text"
+    t.integer  "steplist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "steps", ["steplist_id"], :name => "index_steps_on_steplist_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

@@ -1,10 +1,16 @@
 Steps::Application.routes.draw do
   
-  devise_for :users do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+  scope "/:locale" do
+    resources :steps
+
+    resources :steplists
+
+    devise_for :users do
+      get '/users/sign_out' => 'devise/sessions#destroy'
+    end
   
-  root :to => 'home#index'  
+    root :to => 'steplists#index'
+  end  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

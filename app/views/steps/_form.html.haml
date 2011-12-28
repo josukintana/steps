@@ -1,0 +1,18 @@
+.group
+  = f.label :index, t("activerecord.attributes.step.index", :default => "Index"), :class => :label
+  = f.number_field :index, :class => 'number_field'
+  %span.description Ex: a simple text
+.group
+  = f.label :text, t("activerecord.attributes.step.text", :default => "Text"), :class => :label
+  = f.text_area :text, :class => 'text_area'
+  %span.description Ex: a simple text
+.group
+  = f.label :steplist_id, t("activerecord.attributes.step.steplist_id", :default => "Steplist"), :class => :label
+  = f.number_field :steplist_id, :class => 'number_field'
+  %span.description Ex: a simple text
+.group.navform.wat-cf
+  %button.button{:type => "submit"}
+    = image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+    = t("web-app-theme.save", :default => "Save")
+  %span.text_button_padding= t("web-app-theme.or", :default => "or")
+  = link_to t("web-app-theme.cancel", :default => "Cancel"), steps_path, :class => "text_button_padding link_button"
