@@ -1,14 +1,9 @@
 .block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first.active= link_to "#{t("web-app-theme.list", :default => "List")}", steplists_path
-      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_steplist_path
   .content
-    %h2.title
-      = t("web-app-theme.all", :default => "All")
-      Steplists
+    %h2
+      = t(".steplists")
     .inner
-      %table.table
+      %table.zebra-stripped
         %tr
           %th.first ID
           %th
@@ -17,17 +12,16 @@
           %th.last &nbsp;
         - @steplists.each do |steplist|
           %tr{:class => cycle("odd", "even")}
-            %td
+            %td{:valign => "middle"}
               = steplist.id
             %td
               = link_to steplist.name, steplist_path(steplist)
             %td
               = steplist.created_at
             %td.last
-              = link_to "#{t("web-app-theme.show", :default => "Show")}", steplist_path(steplist)
-              |
-              \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_steplist_path(steplist)} |
-              \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", steplist_path(steplist), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
+              = link_to "#{t("web-app-theme.show", :default => "Show")}", steplist_path(steplist), :class => "btn"
+              \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_steplist_path(steplist), :class => "btn"} |
+              \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", steplist_path(steplist), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => "btn danger"}
       .actions-bar.wat-cf
         .actions
 - content_for :sidebar, render(:partial => 'sidebar')

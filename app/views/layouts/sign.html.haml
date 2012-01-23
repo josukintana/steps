@@ -2,9 +2,9 @@
 %html
   %head
     %title Steps
-    = stylesheet_link_tag "web_app_theme"
+    = stylesheet_link_tag "bootstrap"
     = csrf_meta_tag
   %body
-    #container
-      #box
+    .container
+      .content
         = yield

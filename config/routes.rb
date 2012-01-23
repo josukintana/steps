@@ -1,5 +1,7 @@
 Steps::Application.routes.draw do
   
+  match '/:locale' => 'steplists#index'
+  
   scope "/:locale" do
     resources :steps
 
@@ -10,7 +12,9 @@ Steps::Application.routes.draw do
     end
   
     root :to => 'steplists#index'
-  end  
+  end
+  
+  root :to => 'steplists#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

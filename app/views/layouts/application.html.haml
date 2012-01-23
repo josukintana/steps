@@ -1,37 +1,41 @@
 !!!
 %html
+  
   %head
     %title Steps
-    = stylesheet_link_tag 'web_app_theme'
-    = javascript_include_tag :application
+    = stylesheet_link_tag 'bootstrap'
+    = javascript_include_tag "bootstrap-dropdown.js", :cache => true
     = csrf_meta_tag
-  %body
-    #container
-      #header
-        %h1
-          %a{:href => "/"} Steps
-        #user-navigation
-          %ul.wat-cf
+  %body{:style => "padding-top:40px"}
+    .topbar
+      .fill
+        .container
+          %a.brand{:href => "/"} Steps
+          %ul.nav
+            %li.active
+              %a{:href => "#"} Home
             %li
               %a{:href => "#"}= t(".profile")
             %li
               %a{:href => "#"}= t(".settings")
-            %li
-              = link_to t(".language"), set_language
-            %li
-              = link_to t(".logout"), destroy_user_session_path, :method => :delete
-        #main-navigation
-          %ul.wat-cf
-      #wrapper.wat-cf
-        .flash
-          - flash.each do |type, message|
-            %div{:class => "message #{type}"}
-              %p= message
-        #main
+          - if !user_signed_in?
+            %form.pull-right{:action => ""}
+            %input.input-small{:placeholder => "Username", :type => "text"}/
+            %input.input-small{:placeholder => "Password", :type => "password"}/
+            %button.btn{:type => "submit"} Sign in
+          - else
+          %ul{:class => "nav secondary-nav"}
+            %li{:class => "dropdown", :data => {:dropdown => "dropdown"}}
+              %a{:href => "#", :class => "dropdown-toggle"}
+                = current_user.email
+              %ul{:class => "dropdown-menu"}
+                %li
+                  = link_to(t(".logout"), destroy_user_session_path, :class => 'out')
+    .container
+      .content
+        .wrapper.clearfix
           = yield
-          #footer
-            .block
-              %p
-                Copyright &copy; #{Time.now.year} Steps.
-        #sidebar
-          = yield :sidebar
+      %footer
+      %p Copyright &copy; #{Time.now.year} Steps.
+    / /container
+    .extLives
